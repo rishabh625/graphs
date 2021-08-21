@@ -4,9 +4,10 @@
 
 ## Steps to Deploy Application
    
-   ```git clone
-        cd graphs
-        docker build -t graphs .
+   ```
+   git clone
+   cd graphs
+   docker build -t graphs .
     ```
 
 ## Run Application
