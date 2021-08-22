@@ -1,6 +1,6 @@
 # Graphs
 
-### API to find shortest Path Between two nodes in weighted Graph using Dijkshtra Algorithn
+### API to find shortest Path Between two nodes in weighted Graph using Dijkshtra Algorithm
 
 ## Steps to Deploy Application
    
