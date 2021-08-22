@@ -3,7 +3,6 @@ package datastruct
 import (
 	"fmt"
 	"math"
-	"strings"
 )
 
 // AddNode adds a node to the graph
@@ -67,7 +66,8 @@ func getShortestPath(startNode *Node, endNode *Node, g *ItemGraph) ([]string, in
 						Distance: dist[v.Node.Value] + val.Weight,
 					}
 					dist[val.Node.Value] = dist[v.Node.Value] + val.Weight
-					prev[val.Node.Value] = fmt.Sprintf("%s->%s", prev[val.Node.Value], v.Node.Value)
+					//prev[val.Node.Value] = fmt.Sprintf("->%s", v.Node.Value)
+					prev[val.Node.Value] = v.Node.Value
 					pq.Enqueue(store)
 				}
 				//visited[val.Node.value] = true
@@ -78,25 +78,15 @@ func getShortestPath(startNode *Node, endNode *Node, g *ItemGraph) ([]string, in
 	fmt.Println(prev)
 	pathval := prev[endNode.Value]
 	var finalArr []string
-	if strings.Contains(pathval, startNode.Value) {
-		finalArr = strings.Split(pathval, "->")
-		finalArr = append(finalArr, endNode.Value)
-	} else {
-		value := strings.Split(pathval, "->")
-		pathstr := fmt.Sprintf("%s", endNode.Value)
-		if len(value) > 0 {
-			pathstr = fmt.Sprintf("%s,%s", value[1], endNode.Value)
-			lastNode := value[1]
-			for lastNode != startNode.Value {
-
-				value = strings.Split(prev[lastNode], "->")
-				if len(value) > 0 {
-					lastNode := value[1]
-					pathstr = fmt.Sprintf("%s,%s", lastNode, endNode.Value)
-				}
-			}
-		}
-		finalArr = strings.Split(pathstr, ",")
+	finalArr = append(finalArr, endNode.Value)
+	for pathval != startNode.Value {
+		finalArr = append(finalArr, pathval)
+		pathval = prev[pathval]
+	}
+	finalArr = append(finalArr, pathval)
+	fmt.Println(finalArr)
+	for i, j := 0, len(finalArr)-1; i < j; i, j = i+1, j-1 {
+		finalArr[i], finalArr[j] = finalArr[j], finalArr[i]
 	}
 	return finalArr, dist[endNode.Value]
 
@@ -121,12 +111,12 @@ func CreateGraph(data InputGraph) *ItemGraph {
 	return &g
 }
 
-func GetShortestPath(from, to string, g *ItemGraph) APIResponse {
+func GetShortestPath(from, to string, g *ItemGraph) *APIResponse {
 	nA := &Node{from}
 	nB := &Node{to}
 
 	path, distance := getShortestPath(nA, nB, g)
-	return APIResponse{
+	return &APIResponse{
 		Path:     path,
 		Distance: distance,
 	}

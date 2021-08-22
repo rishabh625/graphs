@@ -12,7 +12,7 @@ func GraphInput(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "POST":
 		var reqobj datastruct.InputGraph
-		var resp datastruct.APIResponse
+		var resp *datastruct.APIResponse
 		if err := json.NewDecoder(r.Body).Decode(&reqobj); err != nil {
 			//resp = &datastruct.APIResponse{}
 			w.WriteHeader(http.StatusBadRequest)
