@@ -1,4 +1,20 @@
+/*
+ * @Author: 27
+ * @LastEditors: 27
+ * @Date: 2022-04-26 10:27:36
+ * @LastEditTime: 2022-04-26 12:25:01
+ * @FilePath: /graphs-Rishabh-Mishra/datastruct/queue.go
+ * @description: type some description
+ */
+
 package datastruct
+
+import "sync"
+
+type NodeQueue struct {
+	Items []Vertex
+	Lock  sync.RWMutex
+}
 
 // Enqueue adds an Node to the end of the queue
 func (s *NodeQueue) Enqueue(t Vertex) {

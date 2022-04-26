@@ -1,3 +1,12 @@
+/*
+ * @Author: 27
+ * @LastEditors: 27
+ * @Date: 2022-04-26 10:27:36
+ * @LastEditTime: 2022-04-26 12:25:21
+ * @FilePath: /graphs-Rishabh-Mishra/datastruct/object.go
+ * @description: type some description
+ */
+
 package datastruct
 
 import "sync"
@@ -23,11 +32,6 @@ type ItemGraph struct {
 }
 
 type PriorityQueue []*Vertex
-
-type NodeQueue struct {
-	Items []Vertex
-	Lock  sync.RWMutex
-}
 
 type InputGraph struct {
 	Graph []InputData `json:"graph"`
