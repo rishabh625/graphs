@@ -18,7 +18,6 @@ func (s *NodeQueue) Enqueue(t Vertex) {
 	}
 	var insertFlag bool
 	for k, v := range s.Items {
-		// 添加的向量比当前遍历到的向量距离小
 		if t.Distance < v.Distance {
 			s.Items = append(s.Items[:k+1], s.Items[k:]...)
 			s.Items[k] = t
