@@ -21,3 +21,7 @@
 ```
 
 ##### Graphs are Represented as array of json object containing source destination and weights, to find shortest distance pass from: , to:
+
+### Self Blog Explain
+> [Dijkstra Algorithm in Golang](https://medium.com/@rishabhmishra131/golang-dijkstra-algorithm-7bf2722ba0c8)
+

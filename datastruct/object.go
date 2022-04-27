@@ -1,7 +1,5 @@
 package datastruct
 
-import "sync"
-
 type Node struct {
 	Value string
 }
@@ -16,18 +14,7 @@ type Vertex struct {
 	Distance int
 }
 
-type ItemGraph struct {
-	Nodes []*Node
-	Edges map[Node][]*Edge
-	Lock  sync.RWMutex
-}
-
 type PriorityQueue []*Vertex
-
-type NodeQueue struct {
-	Items []Vertex
-	Lock  sync.RWMutex
-}
 
 type InputGraph struct {
 	Graph []InputData `json:"graph"`
